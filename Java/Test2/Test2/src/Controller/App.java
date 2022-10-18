@@ -2,47 +2,57 @@ package Controller;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Model.Data;
-import Model.DateModel;
 import Model.User;
 import Model.UserModel;
 import View.*;
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
+        LoginScreen login = new LoginScreen();
         LogScreen logScreen = new LogScreen();
         UserModel userModel = new UserModel();
         ArrayList<User> users = new ArrayList<>();
-        Data data = new Data();
-        DateModel dateModel = new DateModel();
+        int i = 0;
         do{
-        switch(logScreen.logScreen()){
-            case 1:
-            do{
-                switch(dateModel.login()){
-                    case 1: System.out.println("1");
-                    break;
-                    case 2: System.out.println("2");
-                    break;
-                    case 3: System.out.println("3");
-                    break;
-                }}
-            while(dateModel.login()!=0);
-            break;
-            case 2:
-            User user = userModel.registerUser();
-            users.add(user);
-            data.setData(users);   
-            break; 
-            case 3:
-            System.out.println(data.toString());
-            System.out.println(data.getData().size()); 
-            break;    
+            logScreen.logScreen();       
+            i = sc.nextInt();
+            
+            //option - Dang ky tai khoan. 
+            if(i == 2){            
+                User user = userModel.registerUser(users);
+                if(userModel.checkEmail(users, user)){
+                }else{
+                    if(userModel.checkUsername(users, user)){
+                        System.out.println("UserName da duoc su dung.");
+                        }else{
+                            if(userModel.checkPass(user)){
+                            users.add(user);
+                            System.out.println(users.toString());  
+                            }
+                }
+            }
         }
-    }while(logScreen.logScreen()==1|logScreen.logScreen()==2|logScreen.logScreen()==3);
+            
+            //option - Dang nhap.
+            else if (i == 1){    
+            User u = userModel.login(users);
+            if(u == null){
 
-        }
-        
-        // LoginScreen loginScreen = new LoginScreen();
-        // loginScreen.loginScreen();
+            }
+            else{
+                int j = sc.nextInt();
+            if(j==1){
+                userModel.changeUsername(users, u);
+            }else if(j==2){
+                userModel.changeEmail(users, u);
+            }else if(j==3){
+                userModel.changePassword(u);
+            }else if(j==4){
+
+            }else if(j==0){
+                i=0;
+            }}
+        }}while(i != 0);
     }
+}
+     
