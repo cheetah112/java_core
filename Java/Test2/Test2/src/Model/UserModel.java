@@ -14,7 +14,6 @@ public class UserModel {
     //Chuc Nang register.
     public User registerUser(ArrayList<User> users) {
         User user = new User();
-        int i = 0;
         System.out.println("Moi ban nhap email: ");
         String email =  sc.nextLine();
         System.out.println("Nhap username: ");
