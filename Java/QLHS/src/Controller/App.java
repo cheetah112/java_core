@@ -33,14 +33,14 @@ public class App {
         school.setClasses(aclass);
         System.out.println("Danh sach hoc sinh:");
         System.out.println(school.toString());
-        System.out.println("-----------------------------------");
+        System.out.println("---------------------------------------------------------------");
         System.out.println("Danh sach hoc sinh sinh nam 1985 va que o Thai Nguyen la:");
         for(Student s : students){
             if(s.getBirthDay().getYear()==1985 && s.getHometown().equals("Thai Nguyen")){
                 System.out.println(s);
             }
         }
-        System.out.println("-----------------------------------");
+        System.out.println("---------------------------------------------------------------");
         System.out.println("Danh sach tat ca hoc sinh lop 10A1: " + aclass.toString());
     }
 }
