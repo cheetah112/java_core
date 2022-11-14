@@ -116,9 +116,10 @@ public class InputValue {
             if (employee.getIdNhanVien().equals(idNhanVien)){
                 String codeEmployee = employee.getIdNhanVien();
                 return codeEmployee;
-            }
+            }           
         }
-        return getIDEmployee();
+        System.out.println("Khong ton tai id nhan vien");
+        return null;
     }
 
     public static String checkGetEmployee() {
